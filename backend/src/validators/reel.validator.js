@@ -20,6 +20,7 @@ export const listReelsSchema = z.object({
     purchase_date_from: dateOnlySchema.optional(),
     purchase_date_to: dateOnlySchema.optional(),
     station: z.string().optional(),
+    record_status: z.string().optional(),
     approval_status: z.enum(['PENDING', 'CONFIRMED']).optional(),
     include_voided: booleanString,
     sort: sortQuery(['sr_no', 'reel_no', 'status', 'quality', 'supplier_name', 'mill_name', 'purchase_date', 'gsm', 'size', 'previous_weight', 'last_activity_at']),

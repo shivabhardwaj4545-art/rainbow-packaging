@@ -14,6 +14,7 @@ import RecordUsageModal from './RecordUsageModal';
 import MasterCorrectionModal from './MasterCorrectionModal';
 import VoidReelModal from './VoidReelModal';
 import BulkVoidReelModal from './BulkVoidReelModal';
+import ComposeMessageModal from '../../components/Common/ComposeMessageModal';
 import Pagination from '../../components/Common/Pagination';
 import LoadingState from '../../components/Common/LoadingState';
 import ErrorAlert from '../../components/Common/ErrorAlert';
@@ -47,6 +48,7 @@ const BASE_FIELDS = [
   { key: 'width_mm', label: 'Size / Width (cm)', apiKey: 'size' },
   { key: 'consumption', label: 'Consumed / Usage Status', apiKey: 'consumption' },
   { key: 'status', label: 'Reel Status', apiKey: 'status' },
+  { key: 'activity_status', label: 'Active / Inactive', apiKey: 'record_status' },
   { key: 'station', label: 'Station Used', apiKey: 'station' },
 ];
 
@@ -57,7 +59,7 @@ const SORT_LABELS = {
 
 const EMPTY_FILTER_VALUES = {
   supplier: [], mill_name: [], master_code: [], paper_quality: [], gsm: [],
-  bf: [], width_mm: [], consumption: [], status: [], station: [],
+  bf: [], width_mm: [], consumption: [], status: [], activity_status: [], station: [],
 };
 
 export default function ReelListPage() {
@@ -122,6 +124,7 @@ export default function ReelListPage() {
 
     return {
       ...EMPTY_FILTER_VALUES,
+      activity_status: (searchParams.get('record_status') || searchParams.get('activity_status')) ? (searchParams.get('record_status') || searchParams.get('activity_status')).split(',').map((s) => s.trim()).filter(Boolean) : [],
       status: statusParam ? statusParam.split(',').map((s) => s.trim().toUpperCase()).filter(Boolean) : [],
       supplier: supplierParam ? supplierParam.split(',').map((s) => s.trim()).filter(Boolean) : [],
       mill_name: millNameParam ? millNameParam.split(',').map((s) => s.trim()).filter(Boolean) : [],
@@ -246,6 +249,17 @@ export default function ReelListPage() {
     if (csv(filterValues.width_mm)) params.size = csv(filterValues.width_mm);
     if (csv(filterValues.consumption)) params.consumption = csv(filterValues.consumption);
     if (csv(filterValues.status)) params.status = csv(filterValues.status);
+    if (filterValues.activity_status?.length) {
+      const isAct = filterValues.activity_status.includes('Active');
+      const isInact = filterValues.activity_status.includes('Inactive');
+      if (isAct && isInact) {
+        params.record_status = 'ALL';
+      } else if (isAct) {
+        params.record_status = 'ACTIVE';
+      } else if (isInact) {
+        params.record_status = 'VOIDED';
+      }
+    }
     if (csv(filterValues.station)) params.station = csv(filterValues.station);
 
     if (searchParams.get('aging')) {
@@ -712,6 +726,7 @@ export default function ReelListPage() {
       case 'mill_name': return filterOptions.mill_names;
       case 'master_code': return filterOptions.master_codes;
       case 'status': return filterOptions.statuses;
+      case 'activity_status': return ['Active', 'Inactive'];
       case 'station': return filterOptions.stations;
       default:
         if (fieldKey.startsWith('cf.')) {

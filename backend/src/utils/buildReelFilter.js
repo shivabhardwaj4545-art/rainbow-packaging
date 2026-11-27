@@ -9,8 +9,17 @@ import { RECORD_STATUS } from '../constants/reelStatus.js';
 export function buildReelFilter(filters = {}, actor = {}) {
   const query = {};
 
-  // Record status: voided reels are hidden by default unless include_voided is true and caller is ADMIN
-  if (filters.include_voided && actor.role === 'ADMIN') {
+  // Record status filter (Active, Inactive/Voided, or All)
+  if (filters.record_status) {
+    const rs = String(filters.record_status).toUpperCase();
+    if (rs === 'VOIDED' || rs.includes('INACTIVE')) {
+      query.record_status = RECORD_STATUS.VOIDED;
+    } else if (rs === 'ACTIVE') {
+      query.record_status = RECORD_STATUS.ACTIVE;
+    } else if (rs === 'ALL' || rs.includes('ALL')) {
+      // include both ACTIVE and VOIDED
+    }
+  } else if (filters.include_voided && actor.role === 'ADMIN') {
     // include both ACTIVE and VOIDED
   } else {
     query.record_status = RECORD_STATUS.ACTIVE;

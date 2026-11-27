@@ -179,7 +179,7 @@ export const MasterCodeListPage = () => {
       )}
 
       {/* Table List */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden flex flex-col">
         {loading ? (
           <div className="p-12 text-center text-gray-400 text-xs flex justify-center items-center gap-2">
             <Loader2 size={18} className="animate-spin text-brand-blue" />
@@ -190,18 +190,18 @@ export const MasterCodeListPage = () => {
             No Master Codes found matching criteria.
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-gray-50 border-b border-gray-200 text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                  <th className="py-3.5 px-4">Master Code</th>
-                  <th className="py-3.5 px-4">Material / Category Name</th>
-                  <th className="py-3.5 px-4">Quality</th>
-                  <th className="py-3.5 px-4">GSM</th>
-                  <th className="py-3.5 px-4">BF</th>
-                  <th className="py-3.5 px-4">Size (cm)</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  {isRoleSupervisor && <th className="py-3.5 px-4 text-right">Actions</th>}
+          <div className="overflow-auto max-h-[calc(100vh-270px)]">
+            <table className="w-full text-left border-separate border-spacing-0">
+              <thead className="sticky top-0 z-10 bg-gray-50 text-gray-600 font-bold uppercase tracking-wider text-[11px] shadow-xs">
+                <tr>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">Master Code</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">Material / Category Name</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">Quality</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">GSM</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">BF</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">Size (cm)</th>
+                  <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200">Status</th>
+                  {isRoleSupervisor && <th className="py-3.5 px-4 bg-gray-50 border-b border-gray-200 text-right">Actions</th>}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 text-xs text-gray-700">

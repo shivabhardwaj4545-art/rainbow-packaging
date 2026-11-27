@@ -233,8 +233,8 @@ export default function CustomFieldsPage() {
           onAction={handleOpenCreateModal}
         />
       ) : (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs overflow-hidden">
-          <div className="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/40">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs overflow-hidden flex flex-col">
+          <div className="sticky top-0 z-20 p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900/90 backdrop-blur-xs">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
               <FileText size={16} className="text-indigo-500" />
               Reel Remarks & Custom Field Entries
@@ -244,17 +244,17 @@ export default function CustomFieldsPage() {
             </span>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-100/70 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 font-bold border-b border-slate-200 dark:border-slate-700 uppercase tracking-wider text-xs">
+          <div className="overflow-auto max-h-[calc(100vh-230px)]">
+            <table className="w-full text-left text-sm border-separate border-spacing-0">
+              <thead className="sticky top-0 z-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-xs shadow-xs">
                 <tr>
-                  <th className="px-6 py-3.5">Reel No</th>
-                  <th className="px-6 py-3.5">Reel Specifications</th>
-                  <th className="px-6 py-3.5">Supplier</th>
-                  <th className="px-6 py-3.5">Current Balance</th>
-                  <th className="px-6 py-3.5">Custom Field Remarks / Updates</th>
-                  <th className="px-6 py-3.5">Status</th>
-                  <th className="px-6 py-3.5 text-right">Actions</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Reel No</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Reel Specifications</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Supplier</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Current Balance</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Custom Field Remarks / Updates</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">Status</th>
+                  <th className="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 dark:divide-slate-700 text-slate-700 dark:text-slate-300">

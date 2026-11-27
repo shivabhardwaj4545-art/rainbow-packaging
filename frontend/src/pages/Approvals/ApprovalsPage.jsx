@@ -419,7 +419,7 @@ export default function ApprovalsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-700 flex-wrap">
+      <div className="sticky top-16 z-20 bg-surface/95 dark:bg-slate-900/95 backdrop-blur-md pt-2 flex border-b border-slate-200 dark:border-slate-700 flex-wrap">
         <button
           onClick={() => {
             setActiveTab('pending');
@@ -892,18 +892,18 @@ export default function ApprovalsPage() {
             message="No past submitted entry decisions recorded."
           />
         ) : (
-          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden space-y-4">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-slate-700 uppercase tracking-wider text-xs">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col space-y-4">
+            <div className="overflow-auto max-h-[calc(100vh-300px)]">
+              <table className="w-full text-left text-sm border-separate border-spacing-0">
+                <thead className="sticky top-0 z-10 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-700 uppercase tracking-wider text-xs shadow-xs">
                   <tr>
-                    <th className="px-6 py-3">Event Type</th>
-                    <th className="px-6 py-3">Reel #</th>
-                    <th className="px-6 py-3">Approval Status & Reason</th>
-                    <th className="px-6 py-3">Submitted By</th>
-                    <th className="px-6 py-3">Reviewed By</th>
-                    <th className="px-6 py-3">Date</th>
-                    <th className="px-6 py-3 text-right">Action</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Event Type</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Reel #</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Approval Status & Reason</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Submitted By</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Reviewed By</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">Date</th>
+                    <th className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 dark:divide-slate-700 text-slate-700 dark:text-slate-300">
